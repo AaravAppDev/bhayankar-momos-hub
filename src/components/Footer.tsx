@@ -62,7 +62,10 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-white/10 pt-8 text-center text-white/70 text-sm">
-          <p>© 2024 Bhayankar Momos. All rights reserved. Made with 🔥 and ❤️</p>
+          <p>© 2025 Bhayankar Momos. All rights reserved. Made with 🔥 and ❤️</p>
+          <p className="mt-2">
+            <a href="https://www.bhayankarmomos.in" className="hover:text-white transition-smooth">www.bhayankarmomos.in</a>
+          </p>
         </div>
       </div>
     </footer>
