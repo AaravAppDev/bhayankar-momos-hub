@@ -46,7 +46,7 @@ const DynamicHero = () => {
         <div className="max-w-4xl mx-auto text-center text-white">
           <Badge variant="secondary" className="mb-6 bg-primary text-white animate-pulse">
             <Flame className="w-4 h-4 mr-2" />
-            Delhi's Hottest Momos Since 2020
+            Dangerously Delicious
           </Badge>
           
           <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-fade-in leading-tight">
