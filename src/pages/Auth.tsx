@@ -10,7 +10,6 @@ import { Flame } from "lucide-react";
 
 const Auth = () => {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -36,25 +35,12 @@ const Auth = () => {
     setLoading(true);
 
     try {
-      if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-        if (error) throw error;
-        toast.success("Logged in successfully!");
-      } else {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            emailRedirectTo: `${window.location.origin}/admin`,
-          },
-        });
-        if (error) throw error;
-        toast.success("Account created! You can now log in.");
-        setIsLogin(true);
-      }
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (error) throw error;
+      toast.success("Logged in successfully!");
     } catch (error: any) {
       toast.error(error.message || "Authentication failed");
     } finally {
@@ -70,10 +56,10 @@ const Auth = () => {
             <Flame className="w-12 h-12 text-primary" />
           </div>
           <CardTitle className="font-display text-3xl">
-            {isLogin ? "Welcome Back" : "Create Account"}
+            Admin Login
           </CardTitle>
           <CardDescription>
-            {isLogin ? "Sign in to manage your momos shop" : "Sign up to get started"}
+            Sign in to manage Bhayankar Momos
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -102,18 +88,9 @@ const Auth = () => {
               />
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Loading..." : isLogin ? "Sign In" : "Sign Up"}
+              {loading ? "Loading..." : "Sign In"}
             </Button>
           </form>
-          <div className="mt-4 text-center">
-            <button
-              type="button"
-              onClick={() => setIsLogin(!isLogin)}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {isLogin ? "Need an account? Sign up" : "Already have an account? Sign in"}
-            </button>
-          </div>
         </CardContent>
       </Card>
     </div>
