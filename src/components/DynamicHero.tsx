@@ -49,13 +49,13 @@ const DynamicHero = () => {
             Delhi's Hottest Momos Since 2020
           </Badge>
           
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-fade-in">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-fade-in leading-tight">
             Dare to Try
             <br />
             <span className="gradient-text">Bhaynakar Momos</span>
           </h1>
           
-          <p className="text-xl md:text-2xl mb-8 text-gray-200 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <p className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 animate-fade-in px-4" style={{ animationDelay: "0.2s" }}>
             Where every bite tells a spicy story. Authentic flavors, bold spices, unforgettable taste.
           </p>
           
@@ -69,21 +69,21 @@ const DynamicHero = () => {
             Explore Our Menu
           </Button>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 animate-fade-in" style={{ animationDelay: "0.6s" }}>
-            <div className="bg-background/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-              <TrendingUp className="w-10 h-10 mx-auto mb-3 text-primary" />
-              <p className="text-3xl font-bold mb-2">{stats.momos_served.toLocaleString()}+</p>
-              <p className="text-gray-200">Momos Served</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-12 sm:mt-16 animate-fade-in" style={{ animationDelay: "0.6s" }}>
+            <div className="bg-background/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 border border-white/20">
+              <TrendingUp className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3 text-primary" />
+              <p className="text-2xl sm:text-3xl font-bold mb-2">{stats.momos_served.toLocaleString()}+</p>
+              <p className="text-sm sm:text-base text-gray-200">Momos Served</p>
             </div>
-            <div className="bg-background/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-              <Users className="w-10 h-10 mx-auto mb-3 text-primary" />
-              <p className="text-3xl font-bold mb-2">{stats.happy_customers.toLocaleString()}+</p>
-              <p className="text-gray-200">Happy Customers</p>
+            <div className="bg-background/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 border border-white/20">
+              <Users className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3 text-primary" />
+              <p className="text-2xl sm:text-3xl font-bold mb-2">{stats.happy_customers.toLocaleString()}+</p>
+              <p className="text-sm sm:text-base text-gray-200">Happy Customers</p>
             </div>
-            <div className="bg-background/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-              <Award className="w-10 h-10 mx-auto mb-3 text-primary" />
-              <p className="text-3xl font-bold mb-2">{stats.varieties}+</p>
-              <p className="text-gray-200">Varieties</p>
+            <div className="bg-background/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 border border-white/20">
+              <Award className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3 text-primary" />
+              <p className="text-2xl sm:text-3xl font-bold mb-2">{stats.varieties}+</p>
+              <p className="text-sm sm:text-base text-gray-200">Varieties</p>
             </div>
           </div>
         </div>
