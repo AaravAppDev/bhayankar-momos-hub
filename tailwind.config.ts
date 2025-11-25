@@ -57,6 +57,17 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        spice: {
+          red: "hsl(var(--spice-red))",
+          orange: "hsl(var(--flame-orange))",
+          yellow: "hsl(var(--golden-yellow))",
+        },
+        charcoal: "hsl(var(--charcoal))",
+        cream: "hsl(var(--cream))",
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Poppins', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
