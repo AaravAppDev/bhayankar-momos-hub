@@ -5,6 +5,7 @@ import DynamicBlog from "@/components/DynamicBlog";
 import About from "@/components/About";
 import DynamicContact from "@/components/DynamicContact";
 import Footer from "@/components/Footer";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
         <DynamicContact />
       </main>
       <Footer />
+      <ThemeToggle />
     </div>
   );
 };

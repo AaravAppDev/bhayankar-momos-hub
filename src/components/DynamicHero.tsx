@@ -44,10 +44,10 @@ const DynamicHero = () => {
       
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-4xl mx-auto text-center text-white">
-          <Badge variant="secondary" className="mb-6 bg-primary text-white animate-pulse">
-            <Flame className="w-4 h-4 mr-2" />
-            Dangerously Delicious
-          </Badge>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 backdrop-blur-sm border border-primary/30 mb-6">
+            <Flame className="w-4 h-4 text-primary animate-pulse" />
+            <span className="text-sm font-medium text-white">Dangerously Delicious</span>
+          </div>
           
           <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-fade-in leading-tight">
             Dare to Try
