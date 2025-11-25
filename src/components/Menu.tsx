@@ -4,6 +4,7 @@ import { Flame } from "lucide-react";
 import chickenMomos from "@/assets/chicken-momos.jpg";
 import vegMomos from "@/assets/veg-momos.jpg";
 import paneerMomos from "@/assets/paneer-momos.jpg";
+import { FadeIn, ScaleIn } from "./ScrollAnimations";
 
 interface MenuItemProps {
   name: string;
@@ -77,7 +78,7 @@ const Menu = () => {
   return (
     <section id="menu" className="py-12 sm:py-16 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8 md:mb-12">
+        <FadeIn className="text-center mb-8 md:mb-12">
           <Badge variant="secondary" className="mb-4">Our Menu</Badge>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             Dare to Try Our <span className="gradient-text">Signature Momos</span>
@@ -85,11 +86,13 @@ const Menu = () => {
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
             Every dumpling is a masterpiece, crafted with passion and served with fire.
           </p>
-        </div>
+        </FadeIn>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-          {menuItems.map((item) => (
-            <MenuItem key={item.name} {...item} />
+          {menuItems.map((item, index) => (
+            <ScaleIn key={item.name} delay={index * 0.1}>
+              <MenuItem {...item} />
+            </ScaleIn>
           ))}
         </div>
       </div>
