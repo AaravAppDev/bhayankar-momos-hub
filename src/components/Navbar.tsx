@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Flame, Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +27,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
               <a
                 key={item.name}
@@ -36,9 +37,11 @@ const Navbar = () => {
                 {item.name}
               </a>
             ))}
-            <Button variant="spicy" size="sm">
-              Order Now
-            </Button>
+            <Link to="/auth">
+              <Button variant="outline" size="sm">
+                Admin
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -64,9 +67,11 @@ const Navbar = () => {
                   {item.name}
                 </a>
               ))}
-              <Button variant="spicy" size="sm" className="w-full">
-                Order Now
-              </Button>
+              <Link to="/auth" onClick={() => setIsOpen(false)}>
+                <Button variant="outline" size="sm" className="w-full">
+                  Admin
+                </Button>
+              </Link>
             </div>
           </div>
         )}

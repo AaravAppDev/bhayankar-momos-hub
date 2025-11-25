@@ -1,9 +1,9 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
+import DynamicHero from "@/components/DynamicHero";
 import Menu from "@/components/Menu";
-import Blog from "@/components/Blog";
+import DynamicBlog from "@/components/DynamicBlog";
 import About from "@/components/About";
-import Contact from "@/components/Contact";
+import DynamicContact from "@/components/DynamicContact";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -11,11 +11,11 @@ const Index = () => {
     <div className="min-h-screen">
       <Navbar />
       <main id="home">
-        <Hero />
+        <DynamicHero />
         <Menu />
-        <Blog />
+        <DynamicBlog />
         <About />
-        <Contact />
+        <DynamicContact />
       </main>
       <Footer />
     </div>
