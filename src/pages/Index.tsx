@@ -6,11 +6,13 @@ import About from "@/components/About";
 import DynamicContact from "@/components/DynamicContact";
 import Footer from "@/components/Footer";
 import ThemeToggle from "@/components/ThemeToggle";
+import ShopAnnouncements from "@/components/ShopAnnouncements";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
+      <ShopAnnouncements />
       <main id="home">
         <DynamicHero />
         <Menu />

@@ -11,6 +11,7 @@ import BranchManager from "@/components/admin/BranchManager";
 import StatsManager from "@/components/admin/StatsManager";
 import SocialLinksManager from "@/components/admin/SocialLinksManager";
 import ContactMessagesManager from "@/components/admin/ContactMessagesManager";
+import AnnouncementsManager from "@/components/admin/AnnouncementsManager";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -87,8 +88,9 @@ const Admin = () => {
       <main className="container mx-auto px-4 py-6 md:py-8">
         <Tabs defaultValue="messages" className="space-y-6">
           <div className="overflow-x-auto -mx-4 px-4">
-            <TabsList className="grid w-full grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-1 sm:gap-2 min-w-max">
+            <TabsList className="grid w-full grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-1 sm:gap-2 min-w-max">
               <TabsTrigger value="messages" className="text-xs sm:text-sm">Messages</TabsTrigger>
+              <TabsTrigger value="announcements" className="text-xs sm:text-sm">Closures</TabsTrigger>
               <TabsTrigger value="stats" className="text-xs sm:text-sm">Stats</TabsTrigger>
               <TabsTrigger value="blogs" className="text-xs sm:text-sm">Blogs</TabsTrigger>
               <TabsTrigger value="branches" className="text-xs sm:text-sm">Branches</TabsTrigger>
@@ -99,6 +101,10 @@ const Admin = () => {
 
           <TabsContent value="messages">
             <ContactMessagesManager />
+          </TabsContent>
+
+          <TabsContent value="announcements">
+            <AnnouncementsManager />
           </TabsContent>
 
           <TabsContent value="stats">

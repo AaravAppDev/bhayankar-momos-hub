@@ -128,6 +128,39 @@ export type Database = {
         }
         Relationships: []
       }
+      shop_announcements: {
+        Row: {
+          active: boolean | null
+          created_at: string
+          end_date: string
+          id: string
+          message: string
+          start_date: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean | null
+          created_at?: string
+          end_date: string
+          id?: string
+          message: string
+          start_date: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean | null
+          created_at?: string
+          end_date?: string
+          id?: string
+          message?: string
+          start_date?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       shop_branches: {
         Row: {
           active: boolean | null
