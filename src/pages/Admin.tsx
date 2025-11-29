@@ -10,6 +10,7 @@ import ContactManager from "@/components/admin/ContactManager";
 import BranchManager from "@/components/admin/BranchManager";
 import StatsManager from "@/components/admin/StatsManager";
 import SocialLinksManager from "@/components/admin/SocialLinksManager";
+import ContactMessagesManager from "@/components/admin/ContactMessagesManager";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -72,26 +73,33 @@ const Admin = () => {
   return (
     <div className="min-h-screen bg-muted/30">
       <header className="border-b bg-background shadow-sm sticky top-0 z-10">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="font-display text-2xl md:text-3xl font-bold gradient-text">
+        <div className="container mx-auto px-4 py-3 md:py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+          <h1 className="font-display text-xl sm:text-2xl md:text-3xl font-bold gradient-text">
             Admin Dashboard
           </h1>
-          <Button onClick={handleLogout} variant="outline" size="sm">
+          <Button onClick={handleLogout} variant="outline" size="sm" className="w-full sm:w-auto">
             <LogOut className="w-4 h-4 mr-2" />
             Logout
           </Button>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
-        <Tabs defaultValue="stats" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 gap-2">
-            <TabsTrigger value="stats">Stats</TabsTrigger>
-            <TabsTrigger value="blogs">Blogs</TabsTrigger>
-            <TabsTrigger value="branches">Branches</TabsTrigger>
-            <TabsTrigger value="contact">Contact</TabsTrigger>
-            <TabsTrigger value="social">Social</TabsTrigger>
-          </TabsList>
+      <main className="container mx-auto px-4 py-6 md:py-8">
+        <Tabs defaultValue="messages" className="space-y-6">
+          <div className="overflow-x-auto -mx-4 px-4">
+            <TabsList className="grid w-full grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-1 sm:gap-2 min-w-max">
+              <TabsTrigger value="messages" className="text-xs sm:text-sm">Messages</TabsTrigger>
+              <TabsTrigger value="stats" className="text-xs sm:text-sm">Stats</TabsTrigger>
+              <TabsTrigger value="blogs" className="text-xs sm:text-sm">Blogs</TabsTrigger>
+              <TabsTrigger value="branches" className="text-xs sm:text-sm">Branches</TabsTrigger>
+              <TabsTrigger value="contact" className="text-xs sm:text-sm">Contact</TabsTrigger>
+              <TabsTrigger value="social" className="text-xs sm:text-sm">Social</TabsTrigger>
+            </TabsList>
+          </div>
+
+          <TabsContent value="messages">
+            <ContactMessagesManager />
+          </TabsContent>
 
           <TabsContent value="stats">
             <StatsManager />

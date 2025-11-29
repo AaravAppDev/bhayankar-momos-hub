@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { toast } from "sonner";
+import { z } from "zod";
 
 interface ContactInfo {
   email: string;
@@ -21,9 +23,18 @@ interface Branch {
   is_main: boolean;
 }
 
+const contactSchema = z.object({
+  name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
+  phone: z.string().trim().min(10, "Phone number must be at least 10 digits").max(15, "Phone number is too long"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email is too long"),
+  message: z.string().trim().min(10, "Message must be at least 10 characters").max(1000, "Message is too long")
+});
+
 const DynamicContact = () => {
   const [contactInfo, setContactInfo] = useState<ContactInfo | null>(null);
   const [branches, setBranches] = useState<Branch[]>([]);
+  const [formData, setFormData] = useState({ name: "", phone: "", email: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -40,6 +51,40 @@ const DynamicContact = () => {
   };
 
   const mainBranch = branches.find(b => b.is_main) || branches[0];
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Validate form data
+      const validatedData = contactSchema.parse(formData);
+
+      // Insert into database
+      const { error } = await supabase
+        .from("contact_messages")
+        .insert([{
+          name: validatedData.name,
+          phone: validatedData.phone,
+          email: validatedData.email,
+          message: validatedData.message
+        }]);
+
+      if (error) throw error;
+
+      toast.success("Message sent successfully! We'll get back to you soon.");
+      setFormData({ name: "", phone: "", email: "", message: "" });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast.error(error.errors[0].message);
+      } else {
+        console.error("Error submitting message:", error);
+        toast.error("Failed to send message. Please try again.");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-12 sm:py-16 md:py-20 bg-muted/30">
@@ -58,12 +103,37 @@ const DynamicContact = () => {
           <Card className="shadow-card">
             <CardContent className="p-6 md:p-8">
               <h3 className="font-display text-2xl font-bold mb-6">Send us a message</h3>
-              <form className="space-y-4">
-                <Input placeholder="Your Name" />
-                <Input placeholder="Phone Number" type="tel" />
-                <Input placeholder="Email Address" type="email" />
-                <Textarea placeholder="Your Message" rows={4} />
-                <Button type="submit" className="w-full">Send Message</Button>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <Input 
+                  placeholder="Your Name" 
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  required
+                />
+                <Input 
+                  placeholder="Phone Number" 
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  required
+                />
+                <Input 
+                  placeholder="Email Address" 
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
+                />
+                <Textarea 
+                  placeholder="Your Message" 
+                  rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  required
+                />
+                <Button type="submit" className="w-full" disabled={isSubmitting}>
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </Button>
               </form>
             </CardContent>
           </Card>
