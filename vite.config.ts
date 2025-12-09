@@ -16,7 +16,3 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
-export default defineConfig({
-  base: '/', // or '/' if using custom domain
-  plugins: [react()],
-});
