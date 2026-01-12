@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Flame, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -20,10 +20,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 gradient-fire rounded-lg flex items-center justify-center">
-              <Flame className="w-6 h-6 text-white" />
-            </div>
-            <span className="font-display text-xl font-bold">Bhayankar Momos</span>
+            <span className="font-display text-2xl font-bold bg-gradient-to-r from-primary via-orange-500 to-red-500 bg-clip-text text-transparent">
+              Bhayankar Momos
+            </span>
           </div>
 
           {/* Desktop Navigation */}
