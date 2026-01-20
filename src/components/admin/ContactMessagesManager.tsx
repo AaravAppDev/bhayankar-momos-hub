@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { Mail, Phone, User, Calendar, CheckCircle, Circle } from "lucide-react";
+import { Mail, Phone, User, Calendar, CheckCircle, Circle, RefreshCw } from "lucide-react";
 import { format } from "date-fns";
 
 interface ContactMessage {
@@ -20,6 +20,13 @@ interface ContactMessage {
 const ContactMessagesManager = () => {
   const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [pullDistance, setPullDistance] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const startYRef = useRef(0);
+  const isPullingRef = useRef(false);
+
+  const PULL_THRESHOLD = 80;
 
   useEffect(() => {
     fetchMessages();
@@ -44,6 +51,39 @@ const ContactMessagesManager = () => {
       supabase.removeChannel(channel);
     };
   }, []);
+
+  const handleRefresh = useCallback(async () => {
+    setRefreshing(true);
+    await fetchMessages();
+    toast.success("Messages refreshed");
+    setRefreshing(false);
+  }, []);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    if (containerRef.current?.scrollTop === 0) {
+      startYRef.current = e.touches[0].clientY;
+      isPullingRef.current = true;
+    }
+  }, []);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (!isPullingRef.current) return;
+    
+    const currentY = e.touches[0].clientY;
+    const diff = currentY - startYRef.current;
+    
+    if (diff > 0 && containerRef.current?.scrollTop === 0) {
+      setPullDistance(Math.min(diff * 0.5, PULL_THRESHOLD + 20));
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    if (pullDistance >= PULL_THRESHOLD && !refreshing) {
+      handleRefresh();
+    }
+    setPullDistance(0);
+    isPullingRef.current = false;
+  }, [pullDistance, refreshing, handleRefresh]);
 
   const fetchMessages = async () => {
     try {
@@ -92,17 +132,55 @@ const ContactMessagesManager = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div 
+      ref={containerRef}
+      className="space-y-6 relative"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Pull to refresh indicator */}
+      <div 
+        className="absolute left-1/2 -translate-x-1/2 -top-2 transition-all duration-200 flex items-center justify-center"
+        style={{ 
+          transform: `translateX(-50%) translateY(${pullDistance - 40}px)`,
+          opacity: pullDistance / PULL_THRESHOLD
+        }}
+      >
+        <RefreshCw 
+          className={`w-6 h-6 text-primary ${refreshing ? 'animate-spin' : ''}`}
+          style={{ 
+            transform: `rotate(${pullDistance * 2}deg)`,
+            transition: refreshing ? 'none' : 'transform 0.1s'
+          }}
+        />
+      </div>
+
       <Card>
         <CardHeader>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <CardTitle className="text-2xl">Contact Messages</CardTitle>
-              <CardDescription>Messages from customers via the contact form</CardDescription>
+              <CardDescription className="flex items-center gap-2">
+                Messages from customers via the contact form
+                <span className="text-xs text-muted-foreground sm:hidden">• Pull down to refresh</span>
+              </CardDescription>
             </div>
-            <Badge variant={unreadCount > 0 ? "destructive" : "secondary"} className="w-fit">
-              {unreadCount} Unread
-            </Badge>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleRefresh}
+                disabled={refreshing}
+                className="hidden sm:flex items-center gap-2"
+              >
+                <RefreshCw className={`w-4 h-4 ${refreshing ? 'animate-spin' : ''}`} />
+                Refresh
+              </Button>
+              <Badge variant={unreadCount > 0 ? "destructive" : "secondary"} className="w-fit">
+                {unreadCount} Unread
+              </Badge>
+            </div>
           </div>
         </CardHeader>
       </Card>
