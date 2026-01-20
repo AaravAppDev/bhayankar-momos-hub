@@ -85,17 +85,17 @@ const Admin = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-6 md:py-8">
-        <Tabs defaultValue="messages" className="space-y-6">
-          <div className="overflow-x-auto -mx-4 px-4">
-            <TabsList className="grid w-full grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-1 sm:gap-2 min-w-max">
-              <TabsTrigger value="messages" className="text-xs sm:text-sm">Messages</TabsTrigger>
-              <TabsTrigger value="announcements" className="text-xs sm:text-sm">Closures</TabsTrigger>
-              <TabsTrigger value="stats" className="text-xs sm:text-sm">Stats</TabsTrigger>
-              <TabsTrigger value="blogs" className="text-xs sm:text-sm">Blogs</TabsTrigger>
-              <TabsTrigger value="branches" className="text-xs sm:text-sm">Branches</TabsTrigger>
-              <TabsTrigger value="contact" className="text-xs sm:text-sm">Contact</TabsTrigger>
-              <TabsTrigger value="social" className="text-xs sm:text-sm">Social</TabsTrigger>
+      <main className="container mx-auto px-2 sm:px-4 py-4 md:py-8">
+        <Tabs defaultValue="messages" className="space-y-4 md:space-y-6">
+          <div className="overflow-x-auto -mx-2 sm:-mx-4 px-2 sm:px-4 pb-2">
+            <TabsList className="inline-flex w-auto min-w-full sm:grid sm:grid-cols-4 lg:grid-cols-7 gap-1 h-auto p-1">
+              <TabsTrigger value="messages" className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 whitespace-nowrap">Messages</TabsTrigger>
+              <TabsTrigger value="announcements" className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 whitespace-nowrap">Closures</TabsTrigger>
+              <TabsTrigger value="stats" className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 whitespace-nowrap">Stats</TabsTrigger>
+              <TabsTrigger value="blogs" className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 whitespace-nowrap">Blogs</TabsTrigger>
+              <TabsTrigger value="branches" className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 whitespace-nowrap">Branches</TabsTrigger>
+              <TabsTrigger value="contact" className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 whitespace-nowrap">Contact</TabsTrigger>
+              <TabsTrigger value="social" className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 whitespace-nowrap">Social</TabsTrigger>
             </TabsList>
           </div>
 

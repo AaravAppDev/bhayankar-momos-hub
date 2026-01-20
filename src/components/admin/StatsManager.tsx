@@ -55,12 +55,12 @@ const StatsManager = () => {
 
   return (
     <Card>
-      <CardHeader>
-        <CardTitle>Dashboard Statistics</CardTitle>
+      <CardHeader className="px-4 sm:px-6">
+        <CardTitle className="text-xl sm:text-2xl">Dashboard Statistics</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-4 sm:px-6">
         <form onSubmit={handleUpdate} className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <div className="space-y-2">
               <Label htmlFor="momos_served">Momos Served</Label>
               <Input
