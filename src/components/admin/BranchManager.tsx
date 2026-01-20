@@ -99,10 +99,10 @@ const BranchManager = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Shop Branches</h2>
-        <Button onClick={startNew}>
+    <div className="space-y-4 md:space-y-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+        <h2 className="text-xl sm:text-2xl font-bold">Shop Branches</h2>
+        <Button onClick={startNew} size="sm" className="w-full sm:w-auto">
           <Plus className="w-4 h-4 mr-2" />
           New Branch
         </Button>
