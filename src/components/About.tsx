@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Flame, Heart, Trophy, Users, Award, ChefHat } from "lucide-react";
+import { Flame, Heart, Users, ChefHat } from "lucide-react";
 import { FadeIn, ScaleIn, SlideInLeft, SlideInRight } from "./ScrollAnimations";
 import founderImage from "@/assets/founder-kamal.jpg";
 
@@ -17,9 +17,9 @@ const About = () => {
       description: "Every momo is handcrafted with care, passion, and the finest ingredients."
     },
     {
-      icon: Trophy,
-      title: "Award Winning",
-      description: "Recognized as the best street food brand in the city for two years running."
+      icon: ChefHat,
+      title: "Authentic Recipe",
+      description: "Traditional recipes passed down through generations, perfected over time."
     },
     {
       icon: Users,
@@ -121,16 +121,16 @@ const About = () => {
                 <div className="grid grid-cols-2 gap-4 pt-4">
                   <Card className="shadow-card">
                     <CardContent className="p-4 text-center">
-                      <Award className="w-8 h-8 text-primary mx-auto mb-2" />
+                      <ChefHat className="w-8 h-8 text-primary mx-auto mb-2" />
                       <p className="font-bold">15+ Years</p>
                       <p className="text-sm text-muted-foreground">Experience</p>
                     </CardContent>
                   </Card>
                   <Card className="shadow-card">
                     <CardContent className="p-4 text-center">
-                      <Trophy className="w-8 h-8 text-primary mx-auto mb-2" />
-                      <p className="font-bold">Award Winner</p>
-                      <p className="text-sm text-muted-foreground">2023 & 2024</p>
+                      <Heart className="w-8 h-8 text-primary mx-auto mb-2" />
+                      <p className="font-bold">Passion Driven</p>
+                      <p className="text-sm text-muted-foreground">Since 2020</p>
                     </CardContent>
                   </Card>
                 </div>
