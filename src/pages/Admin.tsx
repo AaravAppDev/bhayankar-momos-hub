@@ -12,6 +12,7 @@ import StatsManager from "@/components/admin/StatsManager";
 import SocialLinksManager from "@/components/admin/SocialLinksManager";
 import ContactMessagesManager from "@/components/admin/ContactMessagesManager";
 import AnnouncementsManager from "@/components/admin/AnnouncementsManager";
+import MenuManager from "@/components/admin/MenuManager";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -88,8 +89,9 @@ const Admin = () => {
       <main className="container mx-auto px-2 sm:px-4 py-4 md:py-8">
         <Tabs defaultValue="messages" className="space-y-4 md:space-y-6">
           <div className="overflow-x-auto -mx-2 sm:-mx-4 px-2 sm:px-4 pb-2">
-            <TabsList className="inline-flex w-auto min-w-full sm:grid sm:grid-cols-4 lg:grid-cols-7 gap-1 h-auto p-1">
+            <TabsList className="inline-flex w-auto min-w-full sm:grid sm:grid-cols-4 lg:grid-cols-8 gap-1 h-auto p-1">
               <TabsTrigger value="messages" className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 whitespace-nowrap">Messages</TabsTrigger>
+              <TabsTrigger value="menu" className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 whitespace-nowrap">Menu</TabsTrigger>
               <TabsTrigger value="announcements" className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 whitespace-nowrap">Closures</TabsTrigger>
               <TabsTrigger value="stats" className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 whitespace-nowrap">Stats</TabsTrigger>
               <TabsTrigger value="blogs" className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 whitespace-nowrap">Blogs</TabsTrigger>
@@ -101,6 +103,10 @@ const Admin = () => {
 
           <TabsContent value="messages">
             <ContactMessagesManager />
+          </TabsContent>
+
+          <TabsContent value="menu">
+            <MenuManager />
           </TabsContent>
 
           <TabsContent value="announcements">
