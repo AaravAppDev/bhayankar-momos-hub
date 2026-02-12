@@ -128,6 +128,48 @@ export type Database = {
         }
         Relationships: []
       }
+      menu_items: {
+        Row: {
+          active: boolean
+          created_at: string
+          description: string
+          id: string
+          image_url: string | null
+          is_veg: boolean
+          name: string
+          price: string
+          sort_order: number
+          spice_level: number
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          description?: string
+          id?: string
+          image_url?: string | null
+          is_veg?: boolean
+          name: string
+          price: string
+          sort_order?: number
+          spice_level?: number
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          description?: string
+          id?: string
+          image_url?: string | null
+          is_veg?: boolean
+          name?: string
+          price?: string
+          sort_order?: number
+          spice_level?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       shop_announcements: {
         Row: {
           active: boolean | null
