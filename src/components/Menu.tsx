@@ -3,9 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Flame, ChevronLeft, ChevronRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { FadeIn } from "./ScrollAnimations";
+import { FadeIn, ScaleIn } from "./ScrollAnimations";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
 import chickenMomos from "@/assets/chicken-momos.jpg";
 import vegMomos from "@/assets/veg-momos.jpg";
 import paneerMomos from "@/assets/paneer-momos.jpg";
@@ -50,62 +49,37 @@ const fallbackItems: MenuItemData[] = [
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, scale: 0.9, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.5,
-      ease: "easeOut" as const,
-    },
-  }),
-};
-
-const MenuItemCard = ({ item, index }: { item: MenuItemData; index: number }) => (
-  <motion.div
-    custom={index}
-    variants={cardVariants}
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, margin: "-50px" }}
-    whileHover={{ y: -8, transition: { duration: 0.3, ease: "easeOut" } }}
-    className="min-w-[280px] sm:min-w-[320px] snap-start flex-shrink-0"
-  >
-    <Card className="group overflow-hidden shadow-card hover:shadow-glow transition-smooth cursor-pointer h-full">
-      <div className="relative h-48 sm:h-56 overflow-hidden">
-        <img
-          src={item.image_url || "/placeholder.svg"}
-          alt={item.name}
-          className="w-full h-full object-cover group-hover:scale-110 transition-smooth"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
-        <div className="absolute top-4 right-4 flex gap-2">
-          {item.is_veg && (
-            <Badge variant="secondary" className="bg-green-500 text-white">
-              Veg
-            </Badge>
-          )}
-          {item.spice_level > 0 && (
-            <Badge variant="secondary" className="bg-primary text-white flex items-center gap-1">
-              {Array.from({ length: item.spice_level }).map((_, i) => (
-                <Flame key={i} className="w-3 h-3" />
-              ))}
-            </Badge>
-          )}
-        </div>
+const MenuItemCard = ({ item }: { item: MenuItemData }) => (
+  <Card className="group overflow-hidden shadow-card hover:shadow-glow transition-smooth cursor-pointer min-w-[280px] sm:min-w-[320px] snap-start flex-shrink-0">
+    <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+      <img
+        src={item.image_url || "/placeholder.svg"}
+        alt={item.name}
+        className="w-full h-full object-cover group-hover:scale-110 transition-smooth"
+      />
+      <div className="absolute top-4 right-4 flex gap-2">
+        {item.is_veg && (
+          <Badge variant="secondary" className="bg-green-500 text-white">
+            Veg
+          </Badge>
+        )}
+        {item.spice_level > 0 && (
+          <Badge variant="secondary" className="bg-primary text-white flex items-center gap-1">
+            {Array.from({ length: item.spice_level }).map((_, i) => (
+              <Flame key={i} className="w-3 h-3" />
+            ))}
+          </Badge>
+        )}
       </div>
-      <CardContent className="p-4 sm:p-6">
-        <div className="flex justify-between items-start mb-2 gap-2">
-          <h3 className="font-display text-lg sm:text-xl font-bold">{item.name}</h3>
-          <span className="text-lg sm:text-xl font-bold text-primary whitespace-nowrap">{item.price}</span>
-        </div>
-        <p className="text-sm sm:text-base text-muted-foreground">{item.description}</p>
-      </CardContent>
-    </Card>
-  </motion.div>
+    </div>
+    <CardContent className="p-4 sm:p-6">
+      <div className="flex justify-between items-start mb-2 gap-2">
+        <h3 className="font-display text-lg sm:text-xl font-bold">{item.name}</h3>
+        <span className="text-lg sm:text-xl font-bold text-primary whitespace-nowrap">{item.price}</span>
+      </div>
+      <p className="text-sm sm:text-base text-muted-foreground">{item.description}</p>
+    </CardContent>
+  </Card>
 );
 
 const Menu = () => {
@@ -113,9 +87,6 @@ const Menu = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollStart = useRef(0);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -151,26 +122,6 @@ const Menu = () => {
     };
   }, [menuItems, updateScrollButtons]);
 
-  // Mouse drag scrolling for desktop
-  const handleMouseDown = (e: React.MouseEvent) => {
-    isDragging.current = true;
-    startX.current = e.pageX;
-    scrollStart.current = scrollRef.current?.scrollLeft || 0;
-    if (scrollRef.current) scrollRef.current.style.cursor = "grabbing";
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging.current || !scrollRef.current) return;
-    e.preventDefault();
-    const dx = e.pageX - startX.current;
-    scrollRef.current.scrollLeft = scrollStart.current - dx;
-  };
-
-  const handleMouseUp = () => {
-    isDragging.current = false;
-    if (scrollRef.current) scrollRef.current.style.cursor = "grab";
-  };
-
   const scroll = (direction: "left" | "right") => {
     const el = scrollRef.current;
     if (!el) return;
@@ -192,79 +143,42 @@ const Menu = () => {
         </FadeIn>
 
         <div className="relative group">
-          {/* Scroll buttons with smooth fade */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: canScrollLeft ? 1 : 0 }}
-            transition={{ duration: 0.2 }}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 hidden sm:block"
-            style={{ pointerEvents: canScrollLeft ? "auto" : "none" }}
-          >
+          {canScrollLeft && (
             <Button
               variant="outline"
               size="icon"
-              className="rounded-full bg-background/90 backdrop-blur-sm shadow-lg hover:shadow-glow hover:scale-110 transition-smooth"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 rounded-full bg-background/90 backdrop-blur-sm shadow-lg opacity-0 group-hover:opacity-100 transition-smooth hidden sm:flex"
               onClick={() => scroll("left")}
             >
               <ChevronLeft className="w-5 h-5" />
             </Button>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: canScrollRight ? 1 : 0 }}
-            transition={{ duration: 0.2 }}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 hidden sm:block"
-            style={{ pointerEvents: canScrollRight ? "auto" : "none" }}
-          >
+          )}
+          {canScrollRight && (
             <Button
               variant="outline"
               size="icon"
-              className="rounded-full bg-background/90 backdrop-blur-sm shadow-lg hover:shadow-glow hover:scale-110 transition-smooth"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 rounded-full bg-background/90 backdrop-blur-sm shadow-lg opacity-0 group-hover:opacity-100 transition-smooth hidden sm:flex"
               onClick={() => scroll("right")}
             >
               <ChevronRight className="w-5 h-5" />
             </Button>
-          </motion.div>
-
-          {/* Edge fade gradients */}
-          {canScrollLeft && (
-            <div className="absolute left-0 top-0 bottom-4 w-8 bg-gradient-to-r from-muted/30 to-transparent z-[5] pointer-events-none" />
-          )}
-          {canScrollRight && (
-            <div className="absolute right-0 top-0 bottom-4 w-8 bg-gradient-to-l from-muted/30 to-transparent z-[5] pointer-events-none" />
           )}
 
-          {/* Scrollable container with drag support */}
           <div
             ref={scrollRef}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseUp}
-            className="flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 -mx-4 px-4 cursor-grab select-none"
-            style={{
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-              WebkitOverflowScrolling: "touch",
-            }}
+            className="flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 -mx-4 px-4"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" }}
           >
             {menuItems.map((item, index) => (
-              <MenuItemCard key={item.id} item={item} index={index} />
+              <ScaleIn key={item.id} delay={index * 0.08}>
+                <MenuItemCard item={item} />
+              </ScaleIn>
             ))}
           </div>
 
-          {/* Scroll indicator dots */}
-          <div className="flex justify-center gap-1.5 mt-3 sm:hidden">
-            {menuItems.map((item, i) => (
-              <motion.div
-                key={item.id}
-                className="w-1.5 h-1.5 rounded-full bg-primary/30"
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.2 }}
-              />
-            ))}
-            <p className="text-xs text-muted-foreground ml-2">← Swipe →</p>
-          </div>
+          <p className="text-center text-xs text-muted-foreground mt-2 sm:hidden">
+            ← Swipe to see more →
+          </p>
         </div>
       </div>
     </section>
