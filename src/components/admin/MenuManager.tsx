@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,7 +7,7 @@ import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
-import { Plus, Pencil, Trash2, Upload, GripVertical, Flame } from "lucide-react";
+import { Plus, Pencil, Trash2, Upload, GripVertical, Flame, ArrowUp, ArrowDown } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -34,6 +34,8 @@ const MenuManager = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<MenuItem | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -182,6 +184,60 @@ const MenuManager = () => {
     }
   };
 
+  const handleDragStart = (index: number) => {
+    setDraggedIndex(index);
+  };
+
+  const handleDragOver = (e: React.DragEvent, index: number) => {
+    e.preventDefault();
+    setDragOverIndex(index);
+  };
+
+  const handleDrop = async (targetIndex: number) => {
+    if (draggedIndex === null || draggedIndex === targetIndex) {
+      setDraggedIndex(null);
+      setDragOverIndex(null);
+      return;
+    }
+
+    const reordered = [...items];
+    const [moved] = reordered.splice(draggedIndex, 1);
+    reordered.splice(targetIndex, 0, moved);
+
+    // Optimistic update
+    setItems(reordered);
+    setDraggedIndex(null);
+    setDragOverIndex(null);
+
+    // Persist new order
+    await persistOrder(reordered);
+  };
+
+  const moveItem = async (index: number, direction: "up" | "down") => {
+    const targetIndex = direction === "up" ? index - 1 : index + 1;
+    if (targetIndex < 0 || targetIndex >= items.length) return;
+
+    const reordered = [...items];
+    [reordered[index], reordered[targetIndex]] = [reordered[targetIndex], reordered[index]];
+    setItems(reordered);
+    await persistOrder(reordered);
+  };
+
+  const persistOrder = async (reordered: MenuItem[]) => {
+    const updates = reordered.map((item, i) =>
+      supabase.from("menu_items").update({ sort_order: i }).eq("id", item.id)
+    );
+
+    const results = await Promise.all(updates);
+    const hasError = results.some((r) => r.error);
+    if (hasError) {
+      toast.error("Failed to save order");
+      fetchItems();
+    } else {
+      toast.success("Order updated");
+    }
+  };
+
   if (loading) return <p>Loading menu items...</p>;
 
   return (
@@ -276,15 +332,30 @@ const MenuManager = () => {
         {items.length === 0 ? (
           <p className="text-muted-foreground text-center py-8">No menu items yet. Add your first item!</p>
         ) : (
-          <div className="space-y-3">
-            {items.map((item) => (
+          <div className="space-y-1">
+            {items.map((item, index) => (
               <div
                 key={item.id}
-                className={`flex items-center gap-3 p-3 rounded-lg border transition-smooth ${
+                draggable
+                onDragStart={() => handleDragStart(index)}
+                onDragOver={(e) => handleDragOver(e, index)}
+                onDragEnd={() => { setDraggedIndex(null); setDragOverIndex(null); }}
+                onDrop={() => handleDrop(index)}
+                className={`flex items-center gap-3 p-3 rounded-lg border transition-all duration-200 ${
                   !item.active ? "opacity-50" : ""
+                } ${draggedIndex === index ? "opacity-30 scale-95" : ""} ${
+                  dragOverIndex === index && draggedIndex !== index ? "border-primary border-2 bg-primary/5" : ""
                 }`}
               >
-                <GripVertical className="w-4 h-4 text-muted-foreground hidden sm:block" />
+                <div className="flex flex-col items-center gap-0.5 flex-shrink-0">
+                  <GripVertical className="w-4 h-4 text-muted-foreground cursor-grab active:cursor-grabbing hidden sm:block" />
+                  <Button variant="ghost" size="icon" className="h-6 w-6 sm:hidden" onClick={() => moveItem(index, "up")} disabled={index === 0}>
+                    <ArrowUp className="w-3 h-3" />
+                  </Button>
+                  <Button variant="ghost" size="icon" className="h-6 w-6 sm:hidden" onClick={() => moveItem(index, "down")} disabled={index === items.length - 1}>
+                    <ArrowDown className="w-3 h-3" />
+                  </Button>
+                </div>
                 {item.image_url ? (
                   <img src={item.image_url} alt={item.name} className="w-12 h-12 sm:w-16 sm:h-16 rounded-md object-cover flex-shrink-0" />
                 ) : (
