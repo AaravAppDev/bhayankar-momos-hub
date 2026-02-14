@@ -134,6 +134,9 @@ const DynamicContact = () => {
                 <Button type="submit" className="w-full" disabled={isSubmitting}>
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
+                <p className="text-xs text-center text-muted-foreground mt-2">
+                  💬 Your message lands straight in our DMs — we reply fast!
+                </p>
               </form>
             </CardContent>
           </Card>

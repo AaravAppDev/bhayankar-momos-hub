@@ -1,4 +1,4 @@
-import { Flame, Facebook, Instagram, Twitter } from "lucide-react";
+import { Facebook, Instagram, Twitter } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -8,9 +8,6 @@ const Footer = () => {
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 gradient-fire rounded-lg flex items-center justify-center">
-                <Flame className="w-6 h-6 text-white" />
-              </div>
               <span className="font-display text-xl font-bold">Bhayankar Momos</span>
             </div>
             <p className="text-white/70 mb-4">
