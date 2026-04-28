@@ -5,10 +5,6 @@ import { Flame, ChevronLeft, ChevronRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { FadeIn, ScaleIn } from "./ScrollAnimations";
 import { Button } from "@/components/ui/button";
-import chickenMomos from "@/assets/chicken-momos.jpg";
-import vegMomos from "@/assets/veg-momos.jpg";
-import paneerMomos from "@/assets/paneer-momos.jpg";
-
 interface MenuItemData {
   id: string;
   name: string;
@@ -18,36 +14,6 @@ interface MenuItemData {
   is_veg: boolean;
   image_url: string | null;
 }
-
-const fallbackItems: MenuItemData[] = [
-  {
-    id: "1",
-    name: "Classic Chicken Momos",
-    description: "Juicy chicken wrapped in thin dough, steamed to perfection with our secret spice blend.",
-    price: "₹120",
-    spice_level: 2,
-    image_url: chickenMomos,
-    is_veg: false,
-  },
-  {
-    id: "2",
-    name: "Spicy Veg Momos",
-    description: "Fresh vegetables with our signature spicy kick. A vegetarian's dream come true!",
-    price: "₹100",
-    spice_level: 3,
-    image_url: vegMomos,
-    is_veg: true,
-  },
-  {
-    id: "3",
-    name: "Paneer Delight",
-    description: "Cottage cheese momos with aromatic herbs. Creamy, dreamy, and absolutely delicious.",
-    price: "₹130",
-    spice_level: 1,
-    image_url: paneerMomos,
-    is_veg: true,
-  },
-];
 
 const MenuItemCard = ({ item }: { item: MenuItemData }) => (
   <Card className="group overflow-hidden shadow-card hover:shadow-glow transition-smooth cursor-pointer min-w-[280px] sm:min-w-[320px] snap-start flex-shrink-0">
@@ -83,7 +49,7 @@ const MenuItemCard = ({ item }: { item: MenuItemData }) => (
 );
 
 const Menu = () => {
-  const [menuItems, setMenuItems] = useState<MenuItemData[]>(fallbackItems);
+  const [menuItems, setMenuItems] = useState<MenuItemData[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -164,21 +130,29 @@ const Menu = () => {
             </Button>
           )}
 
-          <div
-            ref={scrollRef}
-            className="flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 -mx-4 px-4"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" }}
-          >
-            {menuItems.map((item, index) => (
-              <ScaleIn key={item.id} delay={index * 0.08}>
-                <MenuItemCard item={item} />
-              </ScaleIn>
-            ))}
-          </div>
+          {menuItems.length === 0 ? (
+            <p className="text-center text-muted-foreground py-12">
+              Menu coming soon. Stay tuned! 🥟
+            </p>
+          ) : (
+            <>
+              <div
+                ref={scrollRef}
+                className="flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 -mx-4 px-4"
+                style={{ scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" }}
+              >
+                {menuItems.map((item, index) => (
+                  <ScaleIn key={item.id} delay={index * 0.08}>
+                    <MenuItemCard item={item} />
+                  </ScaleIn>
+                ))}
+              </div>
 
-          <p className="text-center text-xs text-muted-foreground mt-2 sm:hidden">
-            ← Swipe to see more →
-          </p>
+              <p className="text-center text-xs text-muted-foreground mt-2 sm:hidden">
+                ← Swipe to see more →
+              </p>
+            </>
+          )}
         </div>
       </div>
     </section>
