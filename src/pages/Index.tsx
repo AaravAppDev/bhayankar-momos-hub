@@ -14,7 +14,6 @@ const Index = () => {
       <ShopAnnouncements />
       <main id="home">
         <DynamicHero />
-        <Menu />
         <DynamicBlog />
         <About />
         <DynamicContact />
