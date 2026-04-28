@@ -36,11 +36,6 @@ const Navbar = () => {
                 {item.name}
               </a>
             ))}
-            <Link to="/auth">
-              <Button variant="outline" size="sm">
-                Admin
-              </Button>
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}
