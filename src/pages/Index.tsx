@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import DynamicHero from "@/components/DynamicHero";
-import Menu from "@/components/Menu";
 import DynamicBlog from "@/components/DynamicBlog";
 import About from "@/components/About";
 import DynamicContact from "@/components/DynamicContact";
