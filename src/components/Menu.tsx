@@ -130,21 +130,29 @@ const Menu = () => {
             </Button>
           )}
 
-          <div
-            ref={scrollRef}
-            className="flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 -mx-4 px-4"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" }}
-          >
-            {menuItems.map((item, index) => (
-              <ScaleIn key={item.id} delay={index * 0.08}>
-                <MenuItemCard item={item} />
-              </ScaleIn>
-            ))}
-          </div>
+          {menuItems.length === 0 ? (
+            <p className="text-center text-muted-foreground py-12">
+              Menu coming soon. Stay tuned! 🥟
+            </p>
+          ) : (
+            <>
+              <div
+                ref={scrollRef}
+                className="flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 -mx-4 px-4"
+                style={{ scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" }}
+              >
+                {menuItems.map((item, index) => (
+                  <ScaleIn key={item.id} delay={index * 0.08}>
+                    <MenuItemCard item={item} />
+                  </ScaleIn>
+                ))}
+              </div>
 
-          <p className="text-center text-xs text-muted-foreground mt-2 sm:hidden">
-            ← Swipe to see more →
-          </p>
+              <p className="text-center text-xs text-muted-foreground mt-2 sm:hidden">
+                ← Swipe to see more →
+              </p>
+            </>
+          )}
         </div>
       </div>
     </section>
