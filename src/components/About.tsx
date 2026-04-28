@@ -37,7 +37,7 @@ const About = () => {
             More Than Just <span className="gradient-text">Momos</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
-            Started in 2020 with a single cart and a dream to revolutionize street food. 
+            Started with a single cart and a dream to revolutionize street food. 
             Today, Bhayankar Momos is synonymous with quality, flavor, and a fiery passion for food.
           </p>
         </FadeIn>
