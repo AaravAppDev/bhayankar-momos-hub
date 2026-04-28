@@ -49,7 +49,7 @@ const MenuItemCard = ({ item }: { item: MenuItemData }) => (
 );
 
 const Menu = () => {
-  const [menuItems, setMenuItems] = useState<MenuItemData[]>(fallbackItems);
+  const [menuItems, setMenuItems] = useState<MenuItemData[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
