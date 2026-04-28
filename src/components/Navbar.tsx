@@ -61,11 +61,6 @@ const Navbar = () => {
                   {item.name}
                 </a>
               ))}
-              <Link to="/auth" onClick={() => setIsOpen(false)}>
-                <Button variant="outline" size="sm" className="w-full">
-                  Admin
-                </Button>
-              </Link>
             </div>
           </div>
         )}
