@@ -130,7 +130,7 @@ const About = () => {
                     <CardContent className="p-4 text-center">
                       <Heart className="w-8 h-8 text-primary mx-auto mb-2" />
                       <p className="font-bold">Passion Driven</p>
-                      <p className="text-sm text-muted-foreground">Since 2020</p>
+                      <p className="text-sm text-muted-foreground">From Day One</p>
                     </CardContent>
                   </Card>
                 </div>
