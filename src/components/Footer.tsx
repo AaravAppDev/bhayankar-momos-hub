@@ -11,7 +11,7 @@ const Footer = () => {
               <span className="font-display text-xl font-bold">Bhayankar Momos</span>
             </div>
             <p className="text-white/70 mb-4">
-              Serving the city's most daring and delicious momos since 2020. 
+              Serving the city's most daring and delicious momos. 
               We don't just make food, we create experiences.
             </p>
             <div className="flex gap-4">
