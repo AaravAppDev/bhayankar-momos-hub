@@ -38,16 +38,6 @@ const DynamicBlog = () => {
   return (
     <section id="blog" className="py-12 sm:py-16 md:py-20 bg-background">
       <div className="container mx-auto px-4">
-        <FadeIn className="text-center mb-8 md:mb-12">
-          <Badge variant="secondary" className="mb-4">Our Stories</Badge>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            Latest from <span className="gradient-text">Bhaynakar Kitchen</span>
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
-            Spicy tales, customer favorites, and the journey behind every dumpling.
-          </p>
-        </FadeIn>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {posts.map((post, index) => (
             <ScaleIn key={post.id} delay={index * 0.1}>

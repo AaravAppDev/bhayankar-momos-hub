@@ -32,17 +32,12 @@ const About = () => {
     <section id="about" className="py-12 sm:py-16 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <FadeIn className="text-center mb-8 md:mb-12">
-          <Badge variant="secondary" className="mb-4">Our Story</Badge>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            More Than Just <span className="gradient-text">Momos</span>
-          </h2>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
-            Started with a single cart and a dream to revolutionize street food. 
             Today, Bhayankar Momos is synonymous with quality, flavor, and a fiery passion for food.
           </p>
         </FadeIn>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-12 md:mt-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {features.map((feature, index) => (
             <ScaleIn key={feature.title} delay={index * 0.1}>
               <Card className="text-center shadow-card hover:shadow-glow transition-smooth h-full">
