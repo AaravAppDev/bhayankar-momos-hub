@@ -32,17 +32,12 @@ const About = () => {
     <section id="about" className="py-12 sm:py-16 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <FadeIn className="text-center mb-8 md:mb-12">
-          <Badge variant="secondary" className="mb-4">Our Story</Badge>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            More Than Just <span className="gradient-text">Momos</span>
-          </h2>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
-            Started with a single cart and a dream to revolutionize street food. 
             Today, Bhayankar Momos is synonymous with quality, flavor, and a fiery passion for food.
           </p>
         </FadeIn>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-12 md:mt-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {features.map((feature, index) => (
             <ScaleIn key={feature.title} delay={index * 0.1}>
               <Card className="text-center shadow-card hover:shadow-glow transition-smooth h-full">
@@ -58,22 +53,8 @@ const About = () => {
           ))}
         </div>
 
-        <FadeIn delay={0.2} className="mt-16 text-center">
-          <div className="inline-grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-16 p-6 md:p-8 bg-card rounded-2xl shadow-card w-full max-w-4xl">
-            <div className="py-4 sm:py-0">
-              <div className="font-display text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-2">500K+</div>
-              <div className="text-sm md:text-base text-muted-foreground">Momos Served</div>
-            </div>
-            <div className="py-4 sm:py-0 border-y sm:border-y-0 sm:border-x border-border">
-              <div className="font-display text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-2">50K+</div>
-              <div className="text-sm md:text-base text-muted-foreground">Happy Customers</div>
-            </div>
-            <div className="py-4 sm:py-0">
-              <div className="font-display text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-2">10+</div>
-              <div className="text-sm md:text-base text-muted-foreground">Varieties</div>
-            </div>
-          </div>
-        </FadeIn>
+
+
 
         {/* Founder Section */}
         <div className="mt-20">
