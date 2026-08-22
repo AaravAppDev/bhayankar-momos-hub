@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import BlogPage from "./pages/BlogPage";
+import FounderBlog from "./pages/FounderBlog";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import Auth from "./pages/Auth";
@@ -24,6 +25,8 @@ const App = () => (
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/bhayankar-momos-founder" element={<FounderBlog />} />
+            <Route path="/founder" element={<FounderBlog />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
           </Route>
