@@ -11,15 +11,14 @@ const DESCRIPTION =
   "Meet Kamal Goyal, the founder of Bhayankar Momos. The story behind India's boldest momos brand, from a single cart to a beloved neighbourhood shop.";
 const URL = "https://www.bhayankarmomos.in/blog/bhayankar-momos-founder";
 
-const setMeta = (selector: string, attr: string, value: string) => {
-  let el = document.head.querySelector<HTMLMetaElement>(selector);
+const setMeta = (key: "name" | "property", keyValue: string, content: string) => {
+  let el = document.head.querySelector<HTMLMetaElement>(`meta[${key}="${keyValue}"]`);
   if (!el) {
     el = document.createElement("meta");
-    const [key, val] = selector.replace(/[[\]"']/g, "").split("meta")[1].split("=");
-    el.setAttribute(key, val);
+    el.setAttribute(key, keyValue);
     document.head.appendChild(el);
   }
-  el.setAttribute(attr, value);
+  el.setAttribute("content", content);
 };
 
 const FounderBlog = () => {
