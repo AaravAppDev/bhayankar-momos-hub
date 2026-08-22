@@ -61,7 +61,7 @@ const About = () => {
           <FadeIn className="text-center mb-12">
             <Badge variant="secondary" className="mb-4">Meet the Visionary</Badge>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              Founder & <span className="gradient-text">Head Chef</span>
+              Meet Our <span className="gradient-text">Founder</span>
             </h2>
           </FadeIn>
 
@@ -71,7 +71,7 @@ const About = () => {
                 <div className="aspect-square rounded-2xl overflow-hidden shadow-glow">
                   <img
                     src={founderImage}
-                    alt="Kamal Goyal - Founder & Head Chef"
+                    alt="Kamal Goyal - Founder of Bhayankar Momos"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -85,7 +85,7 @@ const About = () => {
               <div className="space-y-6">
                 <div>
                   <h3 className="font-display text-3xl sm:text-4xl font-bold mb-2">Kamal Goyal</h3>
-                  <p className="text-xl text-primary font-semibold mb-4">Founder & Head Chef</p>
+                  <p className="text-xl text-primary font-semibold mb-4">Founder</p>
                 </div>
 
                 <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">

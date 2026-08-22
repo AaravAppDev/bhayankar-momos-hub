@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Newspaper, MapPin, ChefHat } from "lucide-react";
+import { ArrowRight, Newspaper, MapPin, ChefHat, Youtube } from "lucide-react";
 import DynamicHero from "@/components/DynamicHero";
 import { FadeIn, ScaleIn } from "@/components/ScrollAnimations";
 import { Card, CardContent } from "@/components/ui/card";
@@ -15,10 +15,10 @@ const highlights = [
   },
   {
     icon: ChefHat,
-    title: "Who We Are",
-    text: "Meet Kamal Goyal and the fire behind every dumpling.",
-    to: "/about",
-    cta: "Our story",
+    title: "Our Founder",
+    text: "Meet Kamal Goyal, the founder behind Bhayankar Momos.",
+    to: "/blog/bhayankar-momos-founder",
+    cta: "Read his story",
   },
   {
     icon: MapPin,
@@ -68,6 +68,23 @@ const Home = () => {
               </ScaleIn>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="pb-16 sm:pb-20 bg-background">
+        <div className="container mx-auto px-4">
+          <FadeIn className="text-center">
+            <a
+              href="https://www.youtube.com/@bhayankarmomos"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Watch Bhayankar Momos on YouTube"
+              className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl gradient-fire text-primary-foreground font-semibold shadow-glow hover:opacity-90 transition-smooth"
+            >
+              <Youtube className="w-6 h-6" />
+              Watch us on YouTube
+            </a>
+          </FadeIn>
         </div>
       </section>
     </>

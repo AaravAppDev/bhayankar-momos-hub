@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Flame, MapPin, ChevronDown } from "lucide-react";
+import { Flame, MapPin, ChevronDown, Youtube } from "lucide-react";
 import heroImage from "@/assets/hero-momos.jpg";
 
 const DynamicHero = () => {
@@ -84,6 +84,22 @@ const DynamicHero = () => {
               className="text-lg px-8 py-6 bg-transparent border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10"
             >
               <Link to="/about">Our Story</Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="text-lg px-8 py-6 bg-transparent border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10"
+            >
+              <a
+                href="https://www.youtube.com/@bhayankarmomos"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Watch Bhayankar Momos on YouTube"
+              >
+                <Youtube className="mr-2 h-5 w-5" />
+                YouTube
+              </a>
             </Button>
           </motion.div>
         </div>
