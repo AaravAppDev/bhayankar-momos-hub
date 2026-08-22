@@ -25,10 +25,10 @@ const FounderBlog = () => {
   useEffect(() => {
     const prevTitle = document.title;
     document.title = TITLE;
-    setMeta('meta[name="description"]', "content", DESCRIPTION);
-    setMeta('meta[property="og:title"]', "content", TITLE);
-    setMeta('meta[property="og:description"]', "content", DESCRIPTION);
-    setMeta('meta[property="og:url"]', "content", URL);
+    setMeta("name", "description", DESCRIPTION);
+    setMeta("property", "og:title", TITLE);
+    setMeta("property", "og:description", DESCRIPTION);
+    setMeta("property", "og:url", URL);
 
     let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     const prevCanonical = canonical?.href;
