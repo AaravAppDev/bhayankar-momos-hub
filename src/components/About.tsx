@@ -103,7 +103,7 @@ const About = () => {
                 <div className="grid grid-cols-2 gap-4 pt-4">
                   <Card className="shadow-card">
                     <CardContent className="p-4 text-center">
-                      <ChefHat className="w-8 h-8 text-primary mx-auto mb-2" />
+                      <UtensilsCrossed className="w-8 h-8 text-primary mx-auto mb-2" />
                       <p className="font-bold">15+ Years</p>
                       <p className="text-sm text-muted-foreground">Experience</p>
                     </CardContent>
