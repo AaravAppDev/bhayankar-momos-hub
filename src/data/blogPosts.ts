@@ -16,7 +16,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Discover the unique blend of ingredients that makes our signature sauce unforgettable.",
     content: "Our signature spicy sauce is the result of years of experimentation and passion. We blend traditional Himalayan spices with a modern twist, creating a flavor profile that's both authentic and innovative. The secret lies in our careful selection of red chilies, garlic, and a special blend of aromatic spices that have been passed down through generations.",
     date: "2024-01-15",
-    author: "Chef Rajesh",
+    author: "Bhayankar Momos Team",
     image: "https://images.unsplash.com/photo-1596040033229-a0b63bf8d8a6?w=800&q=80",
     category: "Recipe"
   },
