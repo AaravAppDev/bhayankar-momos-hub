@@ -77,7 +77,7 @@ const About = () => {
                   />
                 </div>
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 gradient-fire rounded-full flex items-center justify-center shadow-glow">
-                  <ChefHat className="w-12 h-12 text-white" />
+                  <UtensilsCrossed className="w-12 h-12 text-white" />
                 </div>
               </div>
             </SlideInLeft>
