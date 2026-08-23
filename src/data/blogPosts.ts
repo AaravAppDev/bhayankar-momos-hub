@@ -24,9 +24,9 @@ export const blogPosts: BlogPost[] = [
     id: 2,
     title: "The Art of Perfect Momos: Tips from Our Kitchen",
     excerpt: "Learn the techniques that make our momos stand out from the rest.",
-    content: "Making perfect momos is an art that requires patience, skill, and the right techniques. From kneading the dough to the perfect thickness to ensuring each fold is precise, every step matters. Our chefs have mastered the traditional steaming method that keeps our momos juicy on the inside while maintaining a delicate exterior. Temperature control and timing are crucial - steam for too long and they become soggy, too short and they're undercooked.",
+    content: "Making perfect momos is an art that requires patience, skill, and the right techniques. From kneading the dough to the perfect thickness to ensuring each fold is precise, every step matters. Our team has mastered the traditional steaming method that keeps our momos juicy on the inside while maintaining a delicate exterior. Temperature control and timing are crucial - steam for too long and they become soggy, too short and they're undercooked.",
     date: "2024-01-10",
-    author: "Chef Priya",
+    author: "Bhayankar Momos Team",
     image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800&q=80",
     category: "Tips & Tricks"
   },
