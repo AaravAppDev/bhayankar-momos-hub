@@ -14,7 +14,7 @@ const highlights = [
     cta: "Read the blog",
   },
   {
-    icon: ChefHat,
+    icon: User,
     title: "Our Founder",
     text: "Meet Kamal Goyal, the founder behind Bhayankar Momos.",
     to: "/blog/bhayankar-momos-founder",
