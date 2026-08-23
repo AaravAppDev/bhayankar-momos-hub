@@ -122,6 +122,13 @@ const About = () => {
                   We don&apos;t just serve food; we create memories.&quot;
                   <span className="block mt-2 text-sm font-semibold text-foreground">- Kamal Goyal</span>
                 </blockquote>
+
+                <Link
+                  to="/blog/bhayankar-momos-founder"
+                  className="inline-flex items-center gap-2 mt-2 text-primary font-medium hover:underline"
+                >
+                  Read the full founder story →
+                </Link>
               </div>
             </SlideInRight>
           </div>
