@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Flame, Heart, Users, ChefHat } from "lucide-react";
+import { Flame, Heart, Users, UtensilsCrossed } from "lucide-react";
 import { FadeIn, ScaleIn, SlideInLeft, SlideInRight } from "./ScrollAnimations";
 import founderImage from "@/assets/founder-kamal.jpg";
 
@@ -17,7 +18,7 @@ const About = () => {
       description: "Every momo is handcrafted with care, passion, and the finest ingredients."
     },
     {
-      icon: ChefHat,
+      icon: UtensilsCrossed,
       title: "Authentic Recipe",
       description: "Traditional recipes passed down through generations, perfected over time."
     },
@@ -76,7 +77,7 @@ const About = () => {
                   />
                 </div>
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 gradient-fire rounded-full flex items-center justify-center shadow-glow">
-                  <ChefHat className="w-12 h-12 text-white" />
+                  <UtensilsCrossed className="w-12 h-12 text-white" />
                 </div>
               </div>
             </SlideInLeft>
@@ -102,7 +103,7 @@ const About = () => {
                 <div className="grid grid-cols-2 gap-4 pt-4">
                   <Card className="shadow-card">
                     <CardContent className="p-4 text-center">
-                      <ChefHat className="w-8 h-8 text-primary mx-auto mb-2" />
+                      <UtensilsCrossed className="w-8 h-8 text-primary mx-auto mb-2" />
                       <p className="font-bold">15+ Years</p>
                       <p className="text-sm text-muted-foreground">Experience</p>
                     </CardContent>
@@ -121,6 +122,13 @@ const About = () => {
                   We don&apos;t just serve food; we create memories.&quot;
                   <span className="block mt-2 text-sm font-semibold text-foreground">- Kamal Goyal</span>
                 </blockquote>
+
+                <Link
+                  to="/blog/bhayankar-momos-founder"
+                  className="inline-flex items-center gap-2 mt-2 text-primary font-medium hover:underline"
+                >
+                  Read the full founder story →
+                </Link>
               </div>
             </SlideInRight>
           </div>

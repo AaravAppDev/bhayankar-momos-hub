@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Newspaper, MapPin, ChefHat, Youtube } from "lucide-react";
+import { ArrowRight, Newspaper, MapPin, User, Youtube } from "lucide-react";
 import DynamicHero from "@/components/DynamicHero";
 import { FadeIn, ScaleIn } from "@/components/ScrollAnimations";
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,7 +14,7 @@ const highlights = [
     cta: "Read the blog",
   },
   {
-    icon: ChefHat,
+    icon: User,
     title: "Our Founder",
     text: "Meet Kamal Goyal, the founder behind Bhayankar Momos.",
     to: "/blog/bhayankar-momos-founder",
