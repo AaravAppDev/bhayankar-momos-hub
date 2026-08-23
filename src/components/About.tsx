@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Flame, Heart, Users, ChefHat } from "lucide-react";
+import { Flame, Heart, Users, UtensilsCrossed } from "lucide-react";
 import { FadeIn, ScaleIn, SlideInLeft, SlideInRight } from "./ScrollAnimations";
 import founderImage from "@/assets/founder-kamal.jpg";
 
