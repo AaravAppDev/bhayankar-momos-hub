@@ -18,7 +18,7 @@ const About = () => {
       description: "Every momo is handcrafted with care, passion, and the finest ingredients."
     },
     {
-      icon: ChefHat,
+      icon: UtensilsCrossed,
       title: "Authentic Recipe",
       description: "Traditional recipes passed down through generations, perfected over time."
     },
