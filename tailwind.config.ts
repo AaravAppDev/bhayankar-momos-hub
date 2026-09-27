@@ -64,6 +64,12 @@ export default {
         },
         charcoal: "hsl(var(--charcoal))",
         cream: "hsl(var(--cream))",
+        hero: {
+          cream: "hsl(var(--hero-cream))",
+          ink: "hsl(var(--hero-ink))",
+          crimson: "hsl(var(--hero-crimson))",
+          muted: "hsl(var(--hero-muted))",
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
