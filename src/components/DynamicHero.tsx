@@ -24,7 +24,7 @@ const DynamicHero = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mb-6 max-w-2xl font-display text-4xl font-bold uppercase leading-[1.02] text-hero-ink sm:text-5xl lg:text-6xl xl:text-7xl"
           >
-            Not your ordinary <span className="text-hero-crimson">momos.</span>
+            NOT YOUR ORDINARY <span className="text-hero-crimson">MOMOS.</span>
           </motion.h1>
 
           <motion.p
