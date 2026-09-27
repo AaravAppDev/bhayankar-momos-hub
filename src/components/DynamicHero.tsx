@@ -1,87 +1,58 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Flame, MapPin, ChevronDown, Youtube } from "lucide-react";
+import { ArrowRight, ChevronDown, MapPin, Youtube } from "lucide-react";
 import heroImage from "@/assets/hero-momos.jpg";
 
 const DynamicHero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <motion.div
-        className="absolute inset-0 z-0"
-        initial={{ scale: 1.12 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 8, ease: "easeOut" }}
-        style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)), url(${heroImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
-
-      {/* drifting warm glows */}
-      <motion.div
-        aria-hidden
-        className="absolute top-1/4 -left-20 w-72 h-72 rounded-full gradient-fire opacity-25 blur-3xl z-0"
-        animate={{ x: [0, 60, 0], y: [0, -30, 0] }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        aria-hidden
-        className="absolute bottom-0 -right-16 w-80 h-80 rounded-full bg-accent opacity-20 blur-3xl z-0"
-        animate={{ x: [0, -50, 0], y: [0, 30, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+    <section className="relative min-h-[calc(100svh-2rem)] overflow-hidden bg-hero-cream pt-16 text-hero-ink lg:grid lg:grid-cols-2">
+      <div className="relative z-10 flex items-center px-5 py-10 sm:px-10 sm:py-14 lg:px-16 xl:px-24">
+        <div className="mx-auto w-full max-w-xl lg:mx-0">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 backdrop-blur-sm border border-primary/30 mb-6"
+            className="mb-6 inline-flex items-center border-l-2 border-hero-crimson pl-3"
           >
-            <Flame className="w-4 h-4 text-primary animate-pulse" />
-            <span className="text-sm font-medium text-primary-foreground">Dangerously Delicious</span>
+            <span className="text-xs font-bold uppercase text-hero-crimson">Bhayankar Momos</span>
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight text-primary-foreground"
+            className="mb-6 max-w-2xl font-display text-4xl font-bold uppercase leading-[1.02] text-hero-ink sm:text-5xl lg:text-6xl xl:text-7xl"
           >
-            Dare to Try
-            <br />
-            <span className="gradient-text">Bhaynakar Momos</span>
+            Not your ordinary <span className="text-hero-crimson">momos.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="text-lg sm:text-xl md:text-2xl mb-8 text-primary-foreground/80 px-4"
+            className="mb-8 max-w-lg text-base font-medium leading-relaxed text-hero-muted sm:text-lg"
           >
-            Where every bite tells a spicy story. Authentic flavors, bold spices, unforgettable taste.
+            Bold flavours. Crazy cravings. Bhayankar taste.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-3 justify-center items-center"
+            className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap"
           >
-            <Button asChild size="lg" className="shadow-glow text-lg px-8 py-6">
+            <Button asChild size="lg" className="col-span-2 h-12 rounded-sm bg-hero-ink px-6 text-sm font-bold text-hero-cream shadow-none hover:bg-hero-crimson sm:col-span-1">
               <Link to="/contact">
-                <MapPin className="mr-2 h-5 w-5" />
-                Visit Our Shop
+                Explore Menu
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
             <Button
               asChild
               size="lg"
               variant="outline"
-              className="text-lg px-8 py-6 bg-transparent border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10"
+              className="h-12 rounded-sm border-hero-ink bg-transparent px-5 text-sm font-bold text-hero-ink hover:bg-hero-ink hover:text-hero-cream"
             >
               <Link to="/about">Our Story</Link>
             </Button>
@@ -89,7 +60,7 @@ const DynamicHero = () => {
               asChild
               size="lg"
               variant="outline"
-              className="text-lg px-8 py-6 bg-transparent border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10"
+              className="h-12 rounded-sm border-hero-ink bg-transparent px-5 text-sm font-bold text-hero-ink hover:bg-hero-ink hover:text-hero-cream"
             >
               <a
                 href="https://www.youtube.com/@bhayankarmomos"
@@ -97,21 +68,47 @@ const DynamicHero = () => {
                 rel="noopener noreferrer"
                 aria-label="Watch Bhayankar Momos on YouTube"
               >
-                <Youtube className="mr-2 h-5 w-5" />
+                <Youtube className="h-4 w-4" />
                 YouTube
               </a>
             </Button>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7 }}
+            className="mt-7 flex items-center gap-3 text-xs font-semibold text-hero-muted"
+          >
+            <MapPin className="h-4 w-4 text-hero-crimson" />
+            Visit our shop for the full selection
           </motion.div>
         </div>
       </div>
 
       <motion.div
+        className="relative min-h-[38svh] overflow-hidden bg-hero-crimson lg:min-h-0"
+        initial={{ opacity: 0, scale: 1.04 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+      >
+        <img
+          src={heroImage}
+          alt="Freshly steamed Bhayankar Momos"
+          className="absolute inset-0 h-full w-full object-cover object-center mix-blend-multiply"
+        />
+        <div className="absolute inset-0 bg-hero-crimson/20" aria-hidden />
+        <div className="absolute bottom-5 left-5 border-l-2 border-hero-cream/80 pl-3 text-xs font-bold uppercase text-hero-cream sm:bottom-8 sm:left-8">
+          Steamed fresh. Served bold.
+        </div>
+      </motion.div>
+
+      <motion.div
         aria-hidden
-        className="absolute bottom-24 left-1/2 -translate-x-1/2 z-10 text-primary-foreground/70"
+        className="absolute bottom-2 left-1/2 z-20 -translate-x-1/2 text-hero-cream lg:text-hero-ink"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
       >
-        <ChevronDown className="w-7 h-7" />
+        <ChevronDown className="h-6 w-6" />
       </motion.div>
     </section>
   );

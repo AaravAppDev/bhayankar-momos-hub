@@ -44,6 +44,12 @@ All colors MUST be HSL.
     --golden-yellow: 45 93% 47%;
     --charcoal: 0 0% 15%;
     --cream: 35 25% 97%;
+
+    /* Premium homepage hero and navigation */
+    --hero-cream: 48 56% 98%;
+    --hero-ink: 0 0% 10%;
+    --hero-crimson: 350 73% 44%;
+    --hero-muted: 0 0% 29%;
     
     /* Gradients */
     --gradient-fire: linear-gradient(135deg, hsl(0 72% 51%) 0%, hsl(25 95% 53%) 100%);
@@ -112,6 +118,10 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 0 0% 95%;
     --sidebar-border: 0 0% 25%;
     --sidebar-ring: 0 72% 51%;
+    --hero-cream: 0 0% 10%;
+    --hero-ink: 48 56% 98%;
+    --hero-crimson: 350 73% 48%;
+    --hero-muted: 35 12% 72%;
   }
 }
 
